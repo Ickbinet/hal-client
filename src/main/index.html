@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="images/atlas.svg" sizes="32x32">
+
+  <link rel="stylesheet" href="css/themes.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <title>HAL Client</title>
+</head>
+
+<body>
+
+  <header>
+    <div class="toolbar">
+      <h1>HAL Client V 0.1&nbsp;&nbsp;</h1>
+      <div class="fill-"></div>
+      <a href="#theme=light" class="light-theme icon"><span class="sr-only">Light</span></a>
+      <a href="#theme=dark" class="dark-theme icon"><span class="sr-only">Dark</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section id="uri">
+      <h2 class="sr-only">URI</h2>
+      <form id="uri-form" class="rui-form">
+        <div class="labeled">
+          <label class="required label-text">URI</label>
+          <input id="uri-input" name="uri" type="url" required class="input"
+            placeholder="Any URI which returns HAL/HAL-FORMS" />
+        </div>
+        <div id="uri-variables"></div>
+        <div class="labeled">
+          <label class="label-text">Headers</label>
+          <textarea id="headers-input" name="headers" class="input" rows="3">{}</textarea>
+        </div>
+        <button id="uri-send" class="btn btn-primary">Send</button>
+
+        <progress id="fetch-progress" class="invisible"></progress>
+      </form>
+    </section>
+
+    <section id="error">
+      <h2>Error</h2>
+    </section>
+
+    <section id="links">
+      <h2>Links</h2>
+    </section>
+
+    <section id="templates">
+      <h2>Templates</h2>
+    </section>
+
+    <section id="data">
+      <h2>Data</h2>
+    </section>
+
+  </main>
+
+  <script src="js/hal-client.js" type="module"></script>
+</body>
+
+</html>

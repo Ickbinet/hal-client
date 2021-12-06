@@ -1,0 +1,101 @@
+:root {
+  --white: #ffffff;
+  --dark-white: #f7f7f7;
+  --darker-white: #FCF9F9;
+  --lighter-gray: #d3d3d3;
+  --light-gray: #606060;
+  --gray: #555555;
+  --dark-gray: #444444;
+  --dark-gray-light-transparent: rgba(85, 85, 85, 0.8);
+  --blue: #28436A;
+  --light-blue: #2F7BF6;
+  --dark-blue-light-transparent: rgba(0, 0, 255, 0.2);
+  --green: #286827;
+  --red: #e0051f;
+  --orange: #ec7211;
+  --light-black: #16191f;
+  --black: #000000;
+  --black-light-transparent: rgba(0, 0, 0, 0.8);
+  --dark-blue: #375685;
+  --darker-blue: #355381;
+
+  --main-font: system-ui;
+  --body-margin: 0rem;
+  --body-font-size: 16px;
+  --standard-margin: 0.25rem;
+  --standard-padding: 0.25rem;
+  --standard-border-radius: 0.25rem;
+  --standard-border-width: 1px;
+  --color: var(--light-gray);
+  --background-color: var(--white);
+  --standard-gradient: var(--darker-white);
+  --header-color: var(--black-light-transparent);
+  --header-background-color: transparent;
+  --button-min-width: 10rem;
+  --button-primary-color: var(--white);
+  --button-primary-background-color: var(--dark-blue);
+  --button-color: var(--gray);
+  --button-background-color: var(--dark-white);
+  --background-color-disabled: var(--lighter-gray);
+  --input-border-color: var(--lighter-gray);
+  --heading-color: var(--gray);
+  --breadcrumb-separator: "/";
+  --table-header-color: var(--light-gray);
+  --table-header-background-color: var(--white);
+  --table-even-background-color: var(--white);
+  --table-odd-background-color: var(--dark-white);
+  --label-width: 10rem;
+  --hint-color: var(--green);
+  --hint-border-color: var(--green);
+  --alert-color: var(--light-gray);
+  --alert-background-color: var(--darker-white);
+  --alert-success-color: var(--white);
+  --alert-warning-color: var(--white);
+  --alert-success-background-color: var(--green);
+  --alert-info-background-color: var(--darker-white);
+  --alert-warning-background-color: var(--red);
+  --hover-color: var(--dark-blue-light-transparent);
+  --link-color: var(--blue);
+  --label-color: var(--light-gray);
+  --placeholder-color: var(--light-gray);
+  --title-color: var(--gray);
+  --footer-background-color: var(--dark-white);
+  --legend-color: var(--gray);
+  --legend-background: var(--dark-white);
+  --heading-color-2: var(--blue);
+  --icon-color-filter: invert(28%) sepia(6%) saturate(6641%) hue-rotate(180deg) brightness(90%) contrast(76%);
+  --warning-color: var(--red);
+}
+
+.dark {
+  --standard-gradient: var(--black);
+  --color: var(--darker-white);
+  --background-color: var(--dark-gray);
+  --header-color: var(--white);
+  --button-primary-color: var(--light-black);
+  --button-primary-background-color: var(--orange);
+  --button-color: var(--white);
+  --button-background-color: var(--light-black);
+  --background-color-disabled: var(--gray);
+  --input-border-color: var(--lighter-gray);
+  --heading-color: var(--lighter-gray);
+  --table-header-color: var(--light-blue);
+  --table-header-background-color: var(--light-black);
+  --table-even-background-color: var(--light-black);
+  --table-odd-background-color: var(--dark-gray);
+  --hint-color: var(--lighter-gray);
+  --hint-border-color: var(--darker-white);
+  --footer-background-color: var(--black);
+  --label-color: var(--lighter-gray);
+  --heading-color-2: var(--light-blue);
+  --icon-color-filter: invert(98%) sepia(9%) saturate(427%) hue-rotate(278deg) brightness(118%) contrast(100%);
+}
+
+.dark a {
+  color: rgb(37, 193, 232);
+}
+
+.dark img:not([class~="no-filter"]),
+.dark input[type="image"] {
+  filter: var(--icon-color-filter);
+}
