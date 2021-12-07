@@ -124,7 +124,7 @@ function attachUriFormListener() {
       uriInput.dataset.uri = uriInput.value;
       document.querySelectorAll(".generated:not(.generated.keep)")
         .forEach((e) => e.remove());
-      fetchUri(uri, JSON.parse(headersInput.value));
+      fetchUri(uri, JSON.parse(headersInput.value || "{}"));
     }
 
     return false;
