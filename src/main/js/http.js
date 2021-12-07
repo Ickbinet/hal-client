@@ -25,7 +25,7 @@ export async function sendRequest({
     "Content-Type": contentType,
   });
 
-  window.dispatchEvent(new Event("beforeFetch"));
+  globalThis.dispatchEvent(new Event("beforeFetch"));
 
   let response;
   try {
@@ -43,7 +43,7 @@ export async function sendRequest({
     response = new Response(e, { status: 418, statusText: e.message });
   }
 
-  window.dispatchEvent(new Event("afterFetch"));
+  globalThis.dispatchEvent(new Event("afterFetch"));
 
   return response;
 }

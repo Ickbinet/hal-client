@@ -391,13 +391,13 @@ function withFragment(uri) {
 function attachfetchListeners() {
   const progress = document.getElementById("fetch-progress");
   let progressDelay = 0;
-  window.addEventListener("beforeFetch", () => {
+  globalThis.addEventListener("beforeFetch", () => {
     progressDelay = setTimeout(
       () => progress.classList.remove("invisible"),
       500,
     );
   });
-  window.addEventListener("afterFetch", () => {
+  globalThis.addEventListener("afterFetch", () => {
     clearTimeout(progressDelay);
     progress.classList.add("invisible");
   });
@@ -414,7 +414,7 @@ function attachThemeActionListeners() {
 }
 
 function attachHashChangeListener() {
-  window.addEventListener("hashchange", () => {
+  globalThis.addEventListener("hashchange", () => {
     document.querySelectorAll(".generated").forEach((e) => e.remove());
     uriChange(UriFragment.getParameters().uri);
   });

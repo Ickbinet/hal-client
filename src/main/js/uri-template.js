@@ -73,8 +73,8 @@ function isKeyOperator(operator) {
 }
 
 function getValues(context, operator, key, modifier) {
-  let value = context[key],
-    result = [];
+  let value = context[key];
+  const result = [];
 
   if (isDefined(value) && value !== "") {
     if (
@@ -161,8 +161,8 @@ class UrlTemplate {
       /\{([^\{\}]+)\}|([^\{\}]+)/g,
       (_, expression, literal) => {
         if (expression) {
-          let operator = null,
-            values = [];
+          let operator = null;
+          const values = [];
 
           if (operators.indexOf(expression.charAt(0)) !== -1) {
             operator = expression.charAt(0);
