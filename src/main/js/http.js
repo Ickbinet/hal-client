@@ -61,6 +61,10 @@ export async function getErrorMessage(res) {
         path: res.url,
       };
     }
+    if (msg && msg.status == 405) {
+      msg.allow = res.headers.get("allow");
+    }
   }
+
   return msg;
 }
