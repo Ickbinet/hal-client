@@ -12,7 +12,7 @@ export function objectToTable(o, options = {}) {
       k,
       isObject(v) || Array.isArray(v)
         ? objectToTable(v, { collapsed: options.collapsed ?? true })
-        : escapeHtml(v),
+        : escapeHtml(v ?? ""),
     ])
     .map(([k, v]) => [isNaN(k) ? k + ":" : "", v])
     .map(([k, v]) => `<tr><td>${escapeHtml(k)}</td><td>${v}</td></tr>`)
