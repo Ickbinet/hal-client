@@ -262,10 +262,16 @@ function attachActionFormListeners(parent) {
 function createEmbeddedTable() {
   for (const embedded in res._embedded) {
     const data = res._embedded[embedded];
+
     if (data.length > 0) {
-      const propertyNames = Object.keys(data[0]).filter(
-        (name) => !name.startsWith("_"),
+      let propertyNames = new Set();
+      data.forEach((elem) =>
+        Object.keys(elem).filter((name) => !name.startsWith("_")).forEach(
+          (name) => propertyNames.add(name)
+        )
       );
+
+      propertyNames = [...propertyNames];
 
       const header = "<th>details</th>" +
         propertyNames.map((name) => `<th>${escapeHtml(name)}</th>`).join("");
@@ -284,7 +290,7 @@ function createEmbeddedTable() {
               .map(([name, v]) =>
                 isObject(v) || Array.isArray(v)
                   ? [name, objectToTable(v, { collapsed: true })]
-                  : [name, escapeHtml(v)]
+                  : [name, escapeHtml(v ?? "")]
               )
               .map(
                 ([name, v]) => `
