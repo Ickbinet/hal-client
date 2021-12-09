@@ -125,12 +125,17 @@ function attachUriFormListener() {
 
     const uri = uriTemplate.expand(Object.fromEntries(params));
 
-    document.querySelectorAll(".generated:not(.generated.keep)")
-      .forEach((e) => e.remove());
+    removeGeneratedChildren(document);
+
     fetchUri(uri, JSON.parse(headersInput.value || "{}"));
 
     return false;
   });
+}
+
+function removeGeneratedChildren(parent) {
+  parent.querySelectorAll(".generated:not(.generated.keep)")
+  .forEach((e) => e.remove());
 }
 
 function createLinks() {
@@ -173,6 +178,7 @@ function createLinks() {
   const container = document.createElement("div");
   container.className = "generated";
   container.innerHTML = "<ul>" + html + "</ul>";
+  removeGeneratedChildren(parent);
   parent.appendChild(container);
 }
 
@@ -184,6 +190,7 @@ function createActions() {
     const container = document.createElement("div");
     container.className = "generated";
     container.innerHTML = createForm(halForm, form);
+    removeGeneratedChildren(parent);
     parent.appendChild(container);
   }
 
@@ -352,6 +359,7 @@ function createEmbeddedTable() {
         </table>`;
 
       const parent = document.getElementById("data");
+      removeGeneratedChildren(parent);
       parent.appendChild(container);
     }
   }
@@ -363,6 +371,7 @@ function showTextResponse() {
   container.innerHTML = res;
 
   const parent = document.getElementById("data");
+  removeGeneratedChildren(parent);
   parent.appendChild(container);
 }
 
@@ -374,6 +383,7 @@ function showAnyResponse(contentType) {
   container.src = dataURI;
 
   const parent = document.getElementById("data");
+  removeGeneratedChildren(parent);
   parent.appendChild(container);
 }
 
@@ -391,6 +401,7 @@ function reportError(msg) {
   container.innerHTML = isObject(msg) ? objectToTable(msg) : msg;
 
   const parent = document.getElementById("error");
+  removeGeneratedChildren(parent);
   parent.appendChild(container);
 }
 
