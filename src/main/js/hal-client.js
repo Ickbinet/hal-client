@@ -26,6 +26,8 @@ if (uriTemplateString) {
 }
 
 function uriChange(uriTemplateString) {
+  const params = UriFragment.getParameters();
+
   const template = UriTemplate.parse(uriTemplateString);
 
   createQueryFormInputs(template);
@@ -34,7 +36,6 @@ function uriChange(uriTemplateString) {
   const uri = template.expand().replace("http://", "https://");
 
   uriInput.value = uriTemplateString;
-  uriInput.dataset.uri = uriInput.value;
   headersInput.value = params.headers
     ? JSON.stringify(params.headers, null, 2)
     : "";
@@ -110,6 +111,13 @@ function attachUriFormListener() {
     uriSend.classList.remove("pulse");
 
     const params = new URLSearchParams(new FormData(uriForm));
+
+    UriFragment.updateHash({
+      uri: params.get("uri"),
+      theme: document.body.className,
+      headers: params.get("headers"),
+    });
+
     const uriTemplate = UriTemplate.parse(params.get("uri"));
     params.delete("uri");
     params.delete("headers");
@@ -117,15 +125,9 @@ function attachUriFormListener() {
 
     const uri = uriTemplate.expand(Object.fromEntries(params));
 
-    if (uriInput.dataset.uri && uriInput.dataset.uri != uriInput.value) {
-      location.href = "#" + withFragment(uri);
-      location.reload();
-    } else {
-      uriInput.dataset.uri = uriInput.value;
-      document.querySelectorAll(".generated:not(.generated.keep)")
-        .forEach((e) => e.remove());
-      fetchUri(uri, JSON.parse(headersInput.value || "{}"));
-    }
+    document.querySelectorAll(".generated:not(.generated.keep)")
+      .forEach((e) => e.remove());
+    fetchUri(uri, JSON.parse(headersInput.value || "{}"));
 
     return false;
   });
@@ -267,7 +269,7 @@ function createEmbeddedTable() {
       let propertyNames = new Set();
       data.forEach((elem) =>
         Object.keys(elem).filter((name) => !name.startsWith("_")).forEach(
-          (name) => propertyNames.add(name)
+          (name) => propertyNames.add(name),
         )
       );
 
@@ -342,8 +344,10 @@ function createEmbeddedTable() {
                 ${body}
             </tbody>
             <tfoot>
-                <tr><td colspan="${propertyNames.length +
-        1}" class="paging-toolbar">${foot}</td></tr>
+                <tr><td colspan="${
+        propertyNames.length +
+        1
+      }" class="paging-toolbar">${foot}</td></tr>
             </tfoot>
         </table>`;
 
@@ -398,6 +402,7 @@ function attachfetchListeners() {
   const progress = document.getElementById("fetch-progress");
   let progressDelay = 0;
   globalThis.addEventListener("beforeFetch", () => {
+    clearTimeout(progressDelay);
     progressDelay = setTimeout(
       () => progress.classList.remove("invisible"),
       500,
