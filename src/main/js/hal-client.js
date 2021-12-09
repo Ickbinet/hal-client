@@ -13,7 +13,7 @@ const params = UriFragment.getParameters();
 
 setTheme(params.theme);
 
-attachfetchListeners();
+attachFetchListeners();
 attachThemeActionListeners();
 attachHashChangeListener();
 attachUriFormListener();
@@ -398,7 +398,7 @@ function withFragment(uri) {
   return UriFragment.updatedHash({ uri: uri });
 }
 
-function attachfetchListeners() {
+function attachFetchListeners() {
   const progress = document.getElementById("fetch-progress");
   let progressDelay = 0;
   globalThis.addEventListener("beforeFetch", () => {
