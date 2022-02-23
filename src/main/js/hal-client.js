@@ -184,13 +184,13 @@ function createLinks() {
 
 function createActions() {
   const parent = document.getElementById("templates");
+  removeGeneratedChildren(parent);
 
   for (const form in res._templates) {
     const halForm = res._templates[form];
     const container = document.createElement("div");
     container.className = "generated";
     container.innerHTML = createForm(halForm, form);
-    removeGeneratedChildren(parent);
     parent.appendChild(container);
   }
 
